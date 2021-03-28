@@ -1,4 +1,7 @@
 import React, { useState, useContext } from 'react';
+import { Alert, ActivityIndicator } from 'react-native';
+
+import { AuthContext } from '../BaseAuth';
 
 import {
     Background, Container, Logo, InfoText, AreaInput, Input, SubmitButton,
@@ -11,11 +14,48 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [passwordReenter, setPasswordReenter] = useState('');
 
+    const { signUp, loadingAuth } = useContext(AuthContext);
+
+    function handleSignUp() {
+
+        if (nome.trim()) {
+            if (email.trim()) {
+                if (password.trim()) {
+                    if (passwordReenter.trim()) {
+                        if (password === passwordReenter) {
+                            signUp(email, password, nome);
+                        } else {
+                            callAlert('Cuidado', 'As senhas digitadas não são iguais');
+                        }
+                    } else {
+                        callAlert('Cuidado', 'Digite novamente a senha');
+                    }
+                } else {
+                    callAlert('Cuidado', 'É necessário digitar uma senha');
+                }
+            } else {
+                callAlert('Cuidado', 'É necessário digitar um e-mail');
+            }
+        } else {
+            callAlert('Cuidado', 'É necessário digitar um nome');
+        }
+    }
+
+    function callAlert(title, body) {
+        Alert.alert(
+            title,
+            body,
+            [
+                {
+                    text: 'Ok',
+                }
+            ]
+        );
+    }
+
     return (
         <Background>
-            <Container
-                enabled
-            >
+            <Container>
                 <InfoText>Preencha os dados de sua conta</InfoText>
                 <AreaInput>
                     <Input
@@ -59,7 +99,14 @@ export default function SignUp() {
                     />
                 </AreaInput>
 
-                <SubmitButton >
+                <SubmitButton onPress={handleSignUp}>
+                    {
+                        loadingAuth ? (
+                            <ActivityIndicator size={20} color="#FFF" />
+                        ) : (
+                            <SubmitText>Cria conta</SubmitText>
+                        )
+                    }
                 </SubmitButton>
 
             </Container>

@@ -19,7 +19,7 @@ function SignRoutes() {
                 component={Signup}
                 options={{
                     headerStyle: {
-                        backgroundColor: '#131313',
+                        backgroundColor: '#151515',
                         borderBottomWidth: 2,
                         borderBottomColor: '#EC135B'
                     },

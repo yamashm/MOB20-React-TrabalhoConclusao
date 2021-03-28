@@ -4,12 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 
 import Routes from './src/routes/index';
+import AuthProvider from './src/pages/BaseAuth';
 
 export default function App() {
     return (
         <NavigationContainer>
-            <StatusBar backgroundColor="#151515" barStyle="light-content" />
-            <Routes />
+            <AuthProvider>
+                <StatusBar backgroundColor="#151515" barStyle="light-content" />
+                <Routes />
+            </AuthProvider>
         </NavigationContainer>
     );
 }
