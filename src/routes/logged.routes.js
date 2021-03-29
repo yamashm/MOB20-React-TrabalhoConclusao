@@ -1,6 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import Home from '../pages/Home';
 import About from '../pages/About';
 import CustomDrawer from '../components/CustomDrawer';
 
@@ -26,6 +27,16 @@ function LoggedRoutes() {
                 }
             }}
         >
+            <AppDrawer.Screen name="Principal" component={Home}
+                options={{
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: '#151515',
+                        borderBottomWidth: 2,
+                        borderBottomColor: '#EC135B'
+                    },
+                    headerTintColor: '#FFF'
+                }} />
             <AppDrawer.Screen name="Sobre" component={About}
                 options={{
                     headerShown: true,

@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../BaseAuth';
 
 import {
-    Background, Container, Logo, InfoText, AreaInput, Input, SubmitButton,
+    Container, Logo, InfoText, AreaInput, Input, SubmitButton,
     SubmitText, Link, LinkText
 } from '../Sign/styles';
 
@@ -21,47 +21,45 @@ export default function SignIn() {
     }
 
     return (
-        <Background>
-            <Container>
-                <Logo source={require('../../assets/logofiap.png')} />
-                <InfoText>MOB20 Trabalho de Conclusão de Módulo</InfoText>
-                <InfoText>Faça login para continuar</InfoText>
-                <AreaInput>
-                    <Input
-                        placeholder="E-mail"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                    />
-                </AreaInput>
+        <Container>
+            <Logo source={require('../../assets/logofiap.png')} />
+            <InfoText>MOB20 Trabalho de Conclusão de Módulo</InfoText>
+            <InfoText>Faça login para continuar</InfoText>
+            <AreaInput>
+                <Input
+                    placeholder="E-mail"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                />
+            </AreaInput>
 
-                <AreaInput>
-                    <Input
-                        placeholder="Senha"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                        secureTextEntry={true}
-                    />
-                </AreaInput>
+            <AreaInput>
+                <Input
+                    placeholder="Senha"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    secureTextEntry={true}
+                />
+            </AreaInput>
 
-                <SubmitButton onPress={handleLogin}>
-                    {
-                        loadingAuth ? (
-                            <ActivityIndicator size={20} color="#FFF" />
-                        ) : (
-                            <SubmitText>Entrar</SubmitText>
-                        )
-                    }
-                </SubmitButton>
+            <SubmitButton onPress={handleLogin}>
+                {
+                    loadingAuth ? (
+                        <ActivityIndicator size={20} color="#FFF" />
+                    ) : (
+                        <SubmitText>Entrar</SubmitText>
+                    )
+                }
+            </SubmitButton>
 
-                <Link onPress={() => navigation.navigate('Signup')}>
-                    <LinkText>Criar minha conta</LinkText>
-                </Link>
+            <Link onPress={() => navigation.navigate('Signup')}>
+                <LinkText>Criar minha conta</LinkText>
+            </Link>
 
-            </Container>
-        </Background>
+        </Container>
     );
 }

@@ -4,7 +4,7 @@ import { Alert, ActivityIndicator } from 'react-native';
 import { AuthContext } from '../BaseAuth';
 
 import {
-    Background, Container, Logo, InfoText, AreaInput, Input, SubmitButton,
+    Container, Logo, InfoText, AreaInput, Input, SubmitButton,
     SubmitText, Link, LinkText
 } from '../Sign/styles';
 
@@ -54,62 +54,60 @@ export default function SignUp() {
     }
 
     return (
-        <Background>
-            <Container>
-                <InfoText>Preencha os dados de sua conta</InfoText>
-                <AreaInput>
-                    <Input
-                        placeholder="Nome"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        value={nome}
-                        onChangeText={(text) => setNome(text)}
-                    />
-                </AreaInput>
+        <Container>
+            <InfoText>Preencha os dados de sua conta</InfoText>
+            <AreaInput>
+                <Input
+                    placeholder="Nome"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={nome}
+                    onChangeText={(text) => setNome(text)}
+                />
+            </AreaInput>
 
-                <AreaInput>
-                    <Input
-                        placeholder="Email"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                    />
-                </AreaInput>
+            <AreaInput>
+                <Input
+                    placeholder="Email"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                />
+            </AreaInput>
 
-                <AreaInput>
-                    <Input
-                        placeholder="Senha"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                        secureTextEntry={true}
-                    />
-                </AreaInput>
+            <AreaInput>
+                <Input
+                    placeholder="Senha"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    secureTextEntry={true}
+                />
+            </AreaInput>
 
-                <AreaInput>
-                    <Input
-                        placeholder="Digite a senha novamente"
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        value={passwordReenter}
-                        onChangeText={(text) => setPasswordReenter(text)}
-                        secureTextEntry={true}
-                    />
-                </AreaInput>
+            <AreaInput>
+                <Input
+                    placeholder="Digite a senha novamente"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={passwordReenter}
+                    onChangeText={(text) => setPasswordReenter(text)}
+                    secureTextEntry={true}
+                />
+            </AreaInput>
 
-                <SubmitButton onPress={handleSignUp}>
-                    {
-                        loadingAuth ? (
-                            <ActivityIndicator size={20} color="#FFF" />
-                        ) : (
-                            <SubmitText>Cria conta</SubmitText>
-                        )
-                    }
-                </SubmitButton>
+            <SubmitButton onPress={handleSignUp}>
+                {
+                    loadingAuth ? (
+                        <ActivityIndicator size={20} color="#FFF" />
+                    ) : (
+                        <SubmitText>Cria conta</SubmitText>
+                    )
+                }
+            </SubmitButton>
 
-            </Container>
-        </Background>
+        </Container>
     );
 }

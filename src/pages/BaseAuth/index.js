@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
 
     async function signIn(email, password) {
         setLoadingAuth(true);
-        await firebase.auth().signInWithEmailAndPassword(email, password)
+        await firebase.auth().signInWithEmailAndPassword(email.trim(), password.trim())
             .then(async (value) => {
                 let uid = value.user.uid;
                 await firebase.database().ref('users').child(uid).once('value')
@@ -50,7 +50,7 @@ function AuthProvider({ children }) {
 
     async function signUp(email, password, nome) {
         setLoadingAuth(true);
-        await firebase.auth().createUserWithEmailAndPassword(email, password)
+        await firebase.auth().createUserWithEmailAndPassword(email.trim(), password.trim())
             .then(async (value) => {
                 let uid = value.user.uid;
                 await firebase.database().ref('users').child(uid).set({
