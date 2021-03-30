@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Alert, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 import { AuthContext } from '../BaseAuth';
 
@@ -14,10 +14,9 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [passwordReenter, setPasswordReenter] = useState('');
 
-    const { signUp, loadingAuth } = useContext(AuthContext);
+    const { signUp, callAlert, loadingAuth } = useContext(AuthContext);
 
     function handleSignUp() {
-
         if (nome.trim()) {
             if (email.trim()) {
                 if (password.trim()) {
@@ -41,17 +40,7 @@ export default function SignUp() {
         }
     }
 
-    function callAlert(title, body) {
-        Alert.alert(
-            title,
-            body,
-            [
-                {
-                    text: 'Ok',
-                }
-            ]
-        );
-    }
+
 
     return (
         <Container>

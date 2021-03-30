@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
+import { Alert } from 'react-native';
 import firebase from '../../services/firebaseConfig';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -43,7 +44,7 @@ function AuthProvider({ children }) {
                     })
             })
             .catch((error) => {
-                alert(error.code);
+                callAlert('Erro', error.code);
                 setLoadingAuth(false);
             });
     }
@@ -69,7 +70,7 @@ function AuthProvider({ children }) {
                     })
             })
             .catch((error) => {
-                alert(error.code);
+                callAlert('Erro', error.code);
                 setLoadingAuth(false);
             });
     }
@@ -86,8 +87,20 @@ function AuthProvider({ children }) {
             })
     }
 
+    function callAlert(title, body) {
+        Alert.alert(
+            title,
+            body,
+            [
+                {
+                    text: 'Ok',
+                }
+            ]
+        );
+    }
+
     return (
-        <AuthContext.Provider value={{ signed: !!user, user, loading, signUp, signIn, signOut, loadingAuth }}>
+        <AuthContext.Provider value={{ signed: !!user, user, loading, signUp, signIn, signOut, callAlert, loadingAuth }}>
             {children}
         </AuthContext.Provider>
     );

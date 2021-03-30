@@ -14,10 +14,18 @@ export default function SignIn() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { signIn, loadingAuth } = useContext(AuthContext);
+    const { signIn, callAlert, loadingAuth } = useContext(AuthContext);
 
     function handleLogin() {
-        signIn(email, password);
+        if (email.trim()) {
+            if (password.trim()) {
+                signIn(email, password);
+            } else {
+                callAlert('Cuidado', 'Digite a senha');
+            }
+        } else {
+            callAlert('Cuidado', 'Digite o e-mail');
+        }
     }
 
     return (

@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { MainContext } from '../BaseMain';
@@ -9,15 +10,46 @@ import {
 
 export default function Registration() {
     const navigation = useNavigation();
-    const [locationName, setLocationname] = useState('');
+    const [submitText, setSubmitText] = useState('Cadastrar');
+    const [locationName, setLocationName] = useState('');
     const [locationAddress, setLocationAddress] = useState('');
     const [locationDescription, setLocationDescription] = useState('');
 
-    const { createItem } = useContext(MainContext);
+    const { item, createItem, updateItem } = useContext(MainContext);
 
+    useEffect(() => {
+        async function loadItem() {
+            if (item != null) {
+                setLocationName(item.name);
+                setLocationAddress(item.address);
+                setLocationDescription(item.description);
+                setSubmitText('Atualizar');
+            }
+        }
+
+        loadItem();
+    }, []);
 
     function handleRegister() {
-        createItem();
+        if (item == null) {
+            let data = {
+                name: locationName,
+                address: locationAddress,
+                description: locationDescription
+            }
+            createItem(data);
+        }
+        else {
+            let data = {
+                key: item.key,
+                name: locationName,
+                address: locationAddress,
+                description: locationDescription
+            }
+            updateItem(data);
+        }
+
+        Keyboard.dismiss();
         navigation.navigate('Principal');
     }
 
@@ -30,7 +62,7 @@ export default function Registration() {
                     autoCorrect={false}
                     autoCapitalize="none"
                     value={locationName}
-                    onChangeText={(text) => setLocationname(text)}
+                    onChangeText={(text) => setLocationName(text)}
                 />
             </AreaInput>
 
@@ -56,7 +88,7 @@ export default function Registration() {
 
             <SubmitButton onPress={handleRegister}>
 
-                <SubmitText>Cadastrar</SubmitText>
+                <SubmitText>{submitText}</SubmitText>
 
             </SubmitButton>
         </Container>
