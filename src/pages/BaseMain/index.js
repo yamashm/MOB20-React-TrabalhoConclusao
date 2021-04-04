@@ -8,7 +8,7 @@ export const MainContext = createContext({});
 
 function MainProvider({ children }) {
     const { user: usuario, callAlert } = useContext(AuthContext);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [items, setItems] = useState([]);
     const [item, setItem] = useState(null);
 
@@ -36,6 +36,7 @@ function MainProvider({ children }) {
     }
 
     async function createItem(data) {
+        setLoading(true);
         let uid = usuario.uid;
 
         let key = await firebase.database().ref('items').child(uid).push().key;
@@ -45,6 +46,7 @@ function MainProvider({ children }) {
             address: data.address,
             description: data.description
         });
+        setLoading(false);
 
         loadItemList();
     }
@@ -67,15 +69,18 @@ function MainProvider({ children }) {
     }
 
     async function handleDeleteYes(data) {
+        setLoading(true);
         let uid = usuario.uid;
         await firebase.database().ref('items')
             .child(uid).child(data.key).remove()
             .catch((error) => {
                 callAlert('Erro', error.code);
             });
+        setLoading(false);
     }
 
     async function updateItem(data) {
+        setLoading(true);
         let uid = usuario.uid;
         await firebase.database().ref('items')
             .child(uid).child(data.key).update({
@@ -85,6 +90,7 @@ function MainProvider({ children }) {
             }).catch((error) => {
                 callAlert('Erro', error.code);
             });
+        setLoading(false);
 
         loadItemList();
     }

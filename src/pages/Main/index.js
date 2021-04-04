@@ -6,7 +6,7 @@ import { MainContext } from '../BaseMain';
 import ItemList from '../../components/ItemList'
 
 import {
-    Container, HeaderContainer, AddButton, AddText, List
+    Container, HeaderContainer, AddButton, AddText, List, DeleteText
 } from './styles';
 
 export default function Main() {
@@ -34,6 +34,7 @@ export default function Main() {
                 <AddButton onPress={handleAdd}>
                     <AddText>Cadastrar novo local</AddText>
                 </AddButton>
+                <DeleteText>Para apagar um item pressione e segure</DeleteText>
             </HeaderContainer>
 
             <List

@@ -10,9 +10,9 @@ export const Container = styled.View`
 export const HeaderContainer = styled.View`
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     background-color: #151515;
-    height: 96px;
+    height: 128px;
     width: 100%;
 `;
 
@@ -39,4 +39,11 @@ export const List = styled.FlatList.attrs({
     margin-left: 8px;
     margin-right: 8px;
     width: 85%;
+`;
+
+export const DeleteText = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    color: #9A9999;
+    margin-top: 20px;
 `;

@@ -15,8 +15,16 @@ export const Logo = styled.Image`
  margin-bottom: 32px;
 `;
 
-export const InfoText = styled.Text`
+export const InfoTextTitle = styled.Text`
+ font-size: 18px;
+ font-weight:bold;
+ color: #9A9999;
+ margin-bottom: 32px;
+`;
+
+export const InfoTextBody = styled.Text`
  font-size: 16px;
+ font-style: italic;
  color: #9A9999;
  margin-bottom: 32px;
 `;
@@ -29,5 +37,5 @@ export const ContributorsContainer = styled.KeyboardAvoidingView`
 export const ContributorsInfoText = styled.Text`
  font-size: 16px;
  color: #9A9999;
- margin-bottom: 32px;
+ margin-bottom: 12px;
 `;

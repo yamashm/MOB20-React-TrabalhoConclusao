@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Keyboard } from 'react-native';
+import { Keyboard, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { MainContext } from '../BaseMain';
@@ -15,7 +15,7 @@ export default function Registration() {
     const [locationAddress, setLocationAddress] = useState('');
     const [locationDescription, setLocationDescription] = useState('');
 
-    const { item, createItem, updateItem } = useContext(MainContext);
+    const { loading, item, createItem, updateItem } = useContext(MainContext);
 
     useEffect(() => {
         async function loadItem() {
@@ -87,8 +87,13 @@ export default function Registration() {
             </AreaInput>
 
             <SubmitButton onPress={handleRegister}>
-
-                <SubmitText>{submitText}</SubmitText>
+                {
+                    loading ? (
+                        <ActivityIndicator size={20} color="#FFF" />
+                    ) : (
+                        <SubmitText>{submitText}</SubmitText>
+                    )
+                }
 
             </SubmitButton>
         </Container>
